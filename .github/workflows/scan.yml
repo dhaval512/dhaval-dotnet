@@ -1,3 +1,4 @@
+# .github/workflows/docker-scan.yml
 name: Docker Security Scan
 
 on:
@@ -15,14 +16,13 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Build Docker image
-        run: docker build -t dotnet-app:${{ github.sha }} .
+        run: docker build -t weather-api:${{ github.sha }} .
 
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: 'dotnet-app:${{ github.sha }}'
-          format: 'template'
-          template: '@/contrib/html.tpl'
+          image-ref: 'weather-api:${{ github.sha }}'
+          format: 'html'
           output: 'trivy-results.html'
           severity: 'CRITICAL,HIGH,MEDIUM'
           timeout: '10m'
