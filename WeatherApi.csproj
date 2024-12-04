@@ -8,5 +8,14 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+    <!-- Known vulnerable packages for demonstration -->
+    <PackageReference Include="System.Text.RegularExpressions" Version="4.3.0" />
+    <PackageReference Include="System.Net.Http" Version="4.3.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.0" />
+    <PackageReference Include="System.Drawing.Common" Version="5.0.0" />
+    <!-- Log4net with known vulnerabilities -->
+    <PackageReference Include="log4net" Version="2.0.8" />
   </ItemGroup>
 </Project>
+
