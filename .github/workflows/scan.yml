@@ -24,7 +24,7 @@ jobs:
           wget https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/html.tpl
 
       - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@master
+        uses: aquasecurity/trivy-action@0.29.0
         with:
           image-ref: 'weather-api:${{ github.sha }}'
           format: 'template'
@@ -32,8 +32,7 @@ jobs:
           output: 'trivy-results.html'
           severity: 'CRITICAL,HIGH,MEDIUM'
           timeout: '10m'
-          security-checks: 'vuln'  # Only scan for vulnerabilities
-          scanners: 'vuln'        # Disable unnecessary scanners
+          scanners: 'vuln'
 
       - name: Upload Trivy scan results
         uses: actions/upload-artifact@v3
