@@ -18,11 +18,17 @@ jobs:
       - name: Build Docker image
         run: docker build -t weather-api:${{ github.sha }} .
 
+      # Download the official HTML template
+      - name: Download Trivy template
+        run: |
+          wget https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/html.tpl
+
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
         with:
           image-ref: 'weather-api:${{ github.sha }}'
-          format: 'html'
+          format: 'template'
+          template: '@html.tpl'
           output: 'trivy-results.html'
           severity: 'CRITICAL,HIGH,MEDIUM'
           timeout: '10m'
